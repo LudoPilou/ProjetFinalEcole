@@ -27,32 +27,32 @@ public class MatiereDAO implements IMatiereDAO {
 
 
 	public void ajouter(Matiere t) {
-		// TODO Auto-generated method stub
-		
+	
+		session.getCurrentSession().merge(t);
 	}
 
 
 	public void modifier(Matiere t) {
-		// TODO Auto-generated method stub
-		
+	
+		session.getCurrentSession().update(t);
 	}
 
 
 	public void supprimer(Matiere t) {
-		// TODO Auto-generated method stub
-		
+	
+		session.getCurrentSession().delete(t);
 	}
 
 
 	public List<Matiere> afficher() {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return session.getCurrentSession().createQuery("from Matiere t").list();
 	}
 
 
 	public Matiere getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (Matiere) session.getCurrentSession().get(Matiere.class, id);
 	}
 
 
