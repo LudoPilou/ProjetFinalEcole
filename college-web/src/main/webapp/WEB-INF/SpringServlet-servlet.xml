@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+
+<context:component-scan base-package="org.college"></context:component-scan> 
+
+<bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name = "prefix" value = "/jsp/" />
+      <property name = "suffix" value = ".jsp" />
+   </bean>
+
+   
+   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/collegegroup2parent" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+
+	<!-- definition injection du bean SessionFactory Bean -->
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">create
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<property name="packagesToScan" value="org.college.serveur.entities"></property>
+	</bean>
+	<context:annotation-config />
+	
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+<tx:annotation-driven transaction-manager="transactionManager" />
+   
+   <bean id="daoCollege"  class="org.college.serveur.dao.CollegeDAO" ></bean>
+   <bean id="serviceCollege" name="serviceCollege" class="org.college.serveur.service.CollegeMetier" ></bean>
+   
+   
+   <bean id="daoDepartement"  class="org.college.serveur.dao.DepartementDAO" ></bean>
+   <bean id="serviceDepartement" name="serviceDepartement" class="org.college.serveur.service.DepartementMetier" ></bean>
+
+   <bean id="daoEnseignant"  class="org.college.serveur.dao.EnseignantDAO" ></bean>
+   <bean id="serviceEnseignant" name="serviceEnseignant" class="org.college.serveur.service.EnseignantMetier" ></bean>
+   
+   
+	<bean id="daoEtudiant"  class="org.college.serveur.dao.EtudiantDAO" ></bean>
+   <bean id="serviceEtudiant" name="serviceEtudiant" class="org.college.serveur.service.EtudiantMetier" ></bean>
+	
+	<bean id="daoMatiere"  class="org.college.serveur.dao.MatiereDAO" ></bean>
+   <bean id="serviceMatiere" name="serviceMatiere" class="org.college.serveur.service.MatiereMetier" ></bean>
+   
+   <bean id="daoNoter"  class="org.college.serveur.dao.NoterDAO" ></bean>
+   <bean id="serviceNoter" name="serviceNoter" class="org.college.serveur.service.NoterMetier" ></bean>
+   
+      <bean id="daoPersonne"  class="org.college.serveur.dao.PersonneDAO" ></bean>
+   <bean id="servicePersonne" name="servicePersonne" class="org.college.serveur.service.PersonneMetier" ></bean>
+   
+    <bean id="daoSalle"  class="org.college.serveur.dao.SalleDAO" ></bean>
+   <bean id="serviceSalle" name="serviceSalle" class="org.college.serveur.service.SalleMetier" ></bean>
+	
+	<security:http auto-config="false" use-expressions="true" >
+
+<!-- 		<security:intercept-url pattern="/admin/*" access="hasAnyRole('ROLE_ADMIN') and hasIpAddress('127.0.0.1')" /> -->
+		<security:intercept-url pattern="/admin/*" access="hasAnyRole('ROLE_ADMIN') " />
+		
+		<security:form-login login-page="/login" default-target-url="/jsp/hello.jsp"/>
+		<security:logout logout-success-url="/login" />
+		
+	</security:http>
+	
+	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	<constructor-arg value="12"></constructor-arg>
+	</bean>
+	
+<security:authentication-manager>
+<security:authentication-provider>
+<security:password-encoder ref="encoder"></security:password-encoder>
+<security:jdbc-user-service data-source-ref="dataSource"
+users-by-username-query="select userName,password, actived  from User where username=?"
+authorities-by-username-query="select u.userName, r.roleName from User u, Role r  where u.ID_USER = r.ID_USER and u.userName =? " />
+</security:authentication-provider>
+</security:authentication-manager>
+	
+	 
+	
+	  
+</beans>
