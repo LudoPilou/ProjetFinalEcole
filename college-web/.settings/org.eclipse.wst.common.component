@@ -4,6 +4,9 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="college-serveur-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/college-serveur/college-serveur">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="college-web"/>
         <property name="java-output-path" value="/college-web/target/classes"/>
     </wb-module>
