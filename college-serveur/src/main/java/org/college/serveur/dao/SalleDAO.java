@@ -2,6 +2,7 @@ package org.college.serveur.dao;
 
 import java.util.List;
 
+import org.college.serveur.entities.Matiere;
 import org.college.serveur.entities.Salle;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,32 +29,32 @@ public class SalleDAO implements  ISalleDAO {
 
 
 	public void ajouter(Salle t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().merge(t);
 		
 	}
 
 
 	public void modifier(Salle t) {
-		// TODO Auto-generated method stub
-		
+	
+		session.getCurrentSession().update(t);
 	}
 
 
 	public void supprimer(Salle t) {
-		// TODO Auto-generated method stub
 		
+		session.getCurrentSession().delete(t);
 	}
 
 
 	public List<Salle> afficher() {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return session.getCurrentSession().createQuery("from Salle t").list();
 	}
 
 
 	public Salle getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return (Salle) session.getCurrentSession().get(Salle.class, id);
 	}
 
 	

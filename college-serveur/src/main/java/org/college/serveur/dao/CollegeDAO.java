@@ -1,4 +1,10 @@
+
 package org.college.serveur.dao;
+
+
+
+
+
 
 import java.util.List;
 
@@ -24,13 +30,15 @@ public class CollegeDAO implements ICollegeDAO{
 	 
 	
 	public CollegeDAO() {
+	
+
 	}
 
 
 
 
 	public void ajouter(Colleges t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().merge(t);
 		
 	}
 
@@ -38,7 +46,7 @@ public class CollegeDAO implements ICollegeDAO{
 
 
 	public void modifier(Colleges t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().update(t);
 		
 	}
 
@@ -46,7 +54,7 @@ public class CollegeDAO implements ICollegeDAO{
 
 
 	public void supprimer(Colleges t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().delete(t);
 		
 	}
 
@@ -54,18 +62,19 @@ public class CollegeDAO implements ICollegeDAO{
 
 
 	public List<Colleges> afficher() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return session.getCurrentSession().createQuery("from Colleges c").list();
 	}
 
 
 
 
 	public Colleges getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (Colleges) session.getCurrentSession().get(Colleges.class, id);
 	}
 
 
 
 }
+
