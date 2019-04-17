@@ -9,6 +9,7 @@ import org.college.serveur.entities.Noter;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.SharedSessionContract;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
@@ -25,44 +26,59 @@ public class EtudiantDAO implements  IEtudiantDAO {
 	private SessionFactory session; 
 	
 	public EtudiantDAO() {
-		
 	}
 
 	public void ajouter(Etudiant t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().merge(t);
 		
 	}
 
 	public void modifier(Etudiant t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().update(t);
 		
 	}
 
 	public void supprimer(Etudiant t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().delete(t);
 		
 	}
 
 	public List<Etudiant> afficher() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return  session.getCurrentSession().createQuery("from Etudiante ").list();
 	}
 
 	public Etudiant getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (Etudiant) session.getCurrentSession().get(Etudiant.class, id);
 	}
 
 	public double getMoyenneGenerale(int idEtudiant) {
-		// TODO Auto-generated method stub
-		return 0;
+		Query q = session.getCurrentSession().createQuery("select avg(note) from Noter n where n.etudiant.idPersonne =:id group by n.etudiant.idPersonne").setParameter("id", idEtudiant);
+		
+		return (Double) q.list().get(0);
+		
 	}
 
 	public List<Matiere> getMatieresSansNote(int idEtudiant) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		List<Noter> noters=session.getCurrentSession().createQuery(" from Noter n").list();
+		List<Matiere> matiers=new ArrayList<Matiere>();
+		for(Noter n : noters) {
+			if(n.getEtudiant().getIdPersonne()==idEtudiant && n.getNote()==null) {
+				
+				matiers.add(n.getMatiere());
+			}
 
+		}
+		return matiers;
+	}
 	
+	
+	
+	public List<Etudiant> afficherEtuAdmis(){
+		
+		return session.getCurrentSession().createQuery(" select * from Personne p inner join Noter n on n.idPersonne=p.idPersonne  group by n.etudiant.idPersonne having avg(note)>10").list() ;
+		
+	}
 
 }

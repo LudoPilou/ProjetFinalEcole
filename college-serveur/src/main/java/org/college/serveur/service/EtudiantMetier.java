@@ -67,5 +67,11 @@ public class EtudiantMetier implements IGestionCollegeMetier<Etudiant>,IEtudiant
 		return dao.getMatieresSansNote(idEtudiant);
 	}
 
+
+	public List<Etudiant> afficherEtuAdmis() {
+		
+		return dao.afficherEtuAdmis();
+	}
+
 	
 }
