@@ -33,36 +33,36 @@ public class DepartementDAO implements IDepartementDAO{
 
 
 	public void ajouter(Departement t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().merge(t);
 		
 	}
 
 
 
 	public void modifier(Departement t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().update(t);
 		
 	}
 
 
 
 	public void supprimer(Departement t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().delete(t);
 		
 	}
 
 
 
 	public List<Departement> afficher() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return session.getCurrentSession().createQuery("from Departement d").list();
 	}
 
 
 
 	public Departement getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (Departement) session.getCurrentSession().get(Departement.class, id);
 	}
 
 	
