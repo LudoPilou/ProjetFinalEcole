@@ -24,8 +24,6 @@ public class CollegeDAO implements ICollegeDAO{
 	 
 	
 	public CollegeDAO() {
-	
-
 	}
 
 
