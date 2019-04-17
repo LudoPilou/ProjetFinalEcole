@@ -21,12 +21,6 @@ public class EnseignantMetier implements IGestionCollegeMetier<Enseignant> {
 	
 	
 	
-	
-	public EnseignantMetier() {
-		dao=new EnseignantDAO();
-	}
-
-	
 	public void ajouter(Enseignant t) {
 		dao.ajouter(t);
 	}

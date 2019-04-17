@@ -23,38 +23,36 @@ public class PersonneDAO implements IPersonneDAO {
 	}
 
 
-
 	public void ajouter(Personne t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().merge(t);
 		
 	}
 
 
 
 	public void modifier(Personne t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().update(t);
 		
 	}
 
 
 
 	public void supprimer(Personne t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().delete(t);
 		
 	}
 
 
 
 	public List<Personne> afficher() {
-		// TODO Auto-generated method stub
-		return null;
+		return session.getCurrentSession().createQuery("from Personne p").list();
 	}
 
 
 
 	public Personne getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (Personne) session.getCurrentSession().get(Personne.class, id);
 	}
 
 

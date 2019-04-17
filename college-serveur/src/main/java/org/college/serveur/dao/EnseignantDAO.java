@@ -24,28 +24,25 @@ public class EnseignantDAO implements IGestionCollegeCRUD<Enseignant>,IEnseignan
 		}
 
 	public void ajouter(Enseignant t) {
-		// TODO Auto-generated method stub
-		
+		session.getCurrentSession().merge(t);
 	}
 
 	public void modifier(Enseignant t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().update(t);
 		
 	}
 
 	public void supprimer(Enseignant t) {
-		// TODO Auto-generated method stub
+		session.getCurrentSession().delete(t);
 		
 	}
 
 	public List<Enseignant> afficher() {
-		// TODO Auto-generated method stub
-		return null;
+		return session.getCurrentSession().createQuery("from Enseignant e").list();
 	}
 
 	public Enseignant getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Enseignant) session.getCurrentSession().get(Enseignant.class, id);
 	}
 
 
