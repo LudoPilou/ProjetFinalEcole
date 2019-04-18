@@ -7,17 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+//@Controller
 public class ControllerTest {
 
-	@Autowired
-	IGestionCollegeMetier<Colleges> mcollege;
-	
-	@RequestMapping("/redirect")
-	public ModelAndView afficher() {
-		return new ModelAndView("test");
-		
-	}
+//	@Autowired
+//	IGestionCollegeMetier<Colleges> mcollege;
+//	
+//	@RequestMapping("/redirect")
+//	public ModelAndView afficher() {
+//		return new ModelAndView("test");
+//		
+//	}
 	
 	
 }
