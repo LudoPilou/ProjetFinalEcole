@@ -45,7 +45,7 @@ public class EtudiantDAO implements  IEtudiantDAO {
 
 	public List<Etudiant> afficher() {
 		
-		return  session.getCurrentSession().createQuery("from Etudiante ").list();
+		return  session.getCurrentSession().createQuery("from Etudiant e").list();
 	}
 
 	public Etudiant getById(int id) {
