@@ -1,9 +1,11 @@
 package org.college.serveur.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,12 +18,12 @@ public class Salle {
 	private int idSalle;
 	private int nbrPlace;
 	
-	@OneToMany(mappedBy="salle",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="salle", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	List<Matiere> matieres;
 	
 	
 	public Salle() {
-		
+		matieres= new ArrayList<Matiere>();
 	}
 	public Salle(int nbrPlace) {
 		

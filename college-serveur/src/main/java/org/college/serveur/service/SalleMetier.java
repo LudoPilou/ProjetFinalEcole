@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Service("serviceSalle")
-public class SalleMetier implements ISalleDAO {
+public class SalleMetier implements IGestionCollegeMetier<Salle> {
 
 	@Autowired
 	@Qualifier("daoSalle")
