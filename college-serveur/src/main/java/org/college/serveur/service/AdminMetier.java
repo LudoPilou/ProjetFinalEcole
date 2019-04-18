@@ -1,8 +1,11 @@
 package org.college.serveur.service;
 
-import javax.management.relation.Role;
+import java.util.List;
+
+
 
 import org.college.serveur.dao.IAdminDAO;
+import org.college.serveur.entities.Role;
 import org.college.serveur.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,5 +27,17 @@ public class AdminMetier implements IAdminMetier{
 	public void ajouter(Role admin) {
 		dao.ajouter(admin);
 	}
+
+	public List<User> users() {
+		
+		return dao.users();
+	}
+
+	public User getById(long id) {
+		
+		return dao.getById(id);
+	}
+
+
 
 }

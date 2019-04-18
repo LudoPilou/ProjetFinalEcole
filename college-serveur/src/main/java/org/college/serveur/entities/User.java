@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -19,8 +20,8 @@ public class User {
 	private String userName;
 	private String password;
 	private boolean activated;
-	@OneToMany(mappedBy="user")
-	private List<Role> roles;
+	@OneToOne(mappedBy="user")
+	private Role roles;
 	
 		
 	public User(String userName, String password, boolean activated) {
@@ -60,11 +61,15 @@ public class User {
 		this.activated = activated;
 	}
 
-	public List<Role> getRoles() {
+
+
+
+
+	public Role getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Role> roles) {
+	public void setRoles(Role roles) {
 		this.roles = roles;
 	}
 
