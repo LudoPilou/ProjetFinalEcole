@@ -50,6 +50,7 @@ public class ControllerPersonne {
 		
 		List<Matiere> listeMat = new ArrayList<Matiere>();
 		listeMat = serviceMat.afficher();
+
 		
 		model.addObject("listeMat", listeMat);
 		model.addObject("listeDep", listeDep);

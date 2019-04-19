@@ -75,9 +75,9 @@ public class DepartementMetier implements IGestionCollegeMetier<Departement>,IDe
 		
 		for(Enseignant e : dep.getEnseignants()) {
 			
-			if(e.getMatiere().getIdMatiere()!=0) {
-			idMatieres.add(e.getMatiere().getIdMatiere());
-			sommeMoyenne+=ndao.getMoyenneParMatiere(e.getMatiere().getIdMatiere());
+			if(e.getMatiere().getIdMat()!=0) {
+			idMatieres.add(e.getMatiere().getIdMat());
+			sommeMoyenne+=ndao.getMoyenneParMatiere(e.getMatiere().getIdMat());
 			}
 		}
 		
