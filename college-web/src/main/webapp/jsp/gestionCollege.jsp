@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<form:form modelAttribute="college" action="/college-web/addCollege">
+<form:form modelAttribute="college" action="/college-web/admin/addCollege">
 
 <form:input path="idCollege" type="hidden"/><br>
 Site internet:<form:input path="siteInternet" type="text"/><br>

@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("admin")
 public class CollegeController {
 	
 	@Autowired
 	IGestionCollegeMetier<Colleges> collegeService; 
 	
-	@RequestMapping("/formCollege")
+	@RequestMapping("/gestionCollege")
 	public ModelAndView afficheCollege(){
 		ModelAndView view=new ModelAndView("gestionCollege","college",new Colleges());
 		List<Colleges> colleges=collegeService.afficher(); 
