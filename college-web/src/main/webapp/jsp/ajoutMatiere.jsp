@@ -11,7 +11,7 @@
 <body>
 
 <form:form modelAttribute="matiere" action="/college-web/admin/ajouterMatiere">
-<form:input path="idMatiere" type="hidden"/><br>
+<form:input path="idMat" type="hidden"/><br>
 <form:input path="nom" type="text"/>
 <form:button type="submit">valider</form:button>
 
@@ -34,10 +34,10 @@ itemValue="idSalle" itemLabel="nbrPlace"></form:select>
 <tr>
 <c:forEach items="${listMatiere}" var="matiere">
 <tr>
-<td width="60" align="center">${matiere.idMatiere}</td>
+<td width="60" align="center">${matiere.idMat}</td>
 <td width="60" align="center">${matiere.nom}</td>
-<td width="60" align="center"><a href="modifMat?id=${matiere.idMatiere}">modifier</a></td>
-<td width="60" align="center"><a href="supprMat?id=${matiere.idMatiere}">supprimer</a></td>
+<td width="60" align="center"><a href="modifMat?id=${matiere.idMat}">modifier</a></td>
+<td width="60" align="center"><a href="supprMat?id=${matiere.idMat}">supprimer</a></td>
 </tr>
 </c:forEach>
 </tbody>
