@@ -74,8 +74,7 @@ margin-left:2%;
       <label for="dropdownDep">Sélectionner le département :</label>
 		   		
     			
-   				<form:select path="departement.idDepartement" items="${listeDep}"
-				itemValue="idDepartement" itemLabel="nomDepartement" class="form-control"></form:select> 
+<form:select path="departement.idDepartement" items="${listeDep}" itemValue="idDepartement" itemLabel="nomDepartement" class="form-control"></form:select> 
   				
 		
 		</div>
@@ -83,8 +82,7 @@ margin-left:2%;
 		 <div class="form-group">
       <label for="dropdownMat">Sélectionner la matière enseignée :</label>
 		
-		<form:select path="matiere.idMatiere" items="${listeMat}"
-		itemValue="idMatiere" itemLabel="nom" class="form-control"></form:select> 
+<form:select path="matiere.idMat" items="${listeMat}" itemValue="idMat" itemLabel="nom" class="form-control"></form:select> 
  
 		
 		</div><br>
