@@ -61,5 +61,11 @@ public class NoterMetier implements IGestionCollegeMetier<Noter>,INoterMetier {
 		return dao.getMoyenneParMatiere(idMatiere);
 	}
 
+
+	public Noter getNote(int idMat, int idP) {
+		
+		return dao.getNote(idMat, idP);
+	}
+
 	
 }

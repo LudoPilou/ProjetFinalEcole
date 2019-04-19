@@ -6,5 +6,6 @@ public interface INoterDAO extends IGestionCollegeCRUD<Noter> {
 	
 	
 	public double getMoyenneParMatiere(int idMatiere);
+	public Noter getNote(int idMat,int idP);
 
 }

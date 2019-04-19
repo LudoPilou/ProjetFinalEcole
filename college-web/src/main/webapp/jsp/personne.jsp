@@ -83,8 +83,8 @@ margin-left:2%;
 		 <div class="form-group">
       <label for="dropdownMat">Sélectionner la matière enseignée :</label>
 		
-		<form:select path="matiere.idMatiere" items="${listeMat}"
-				itemValue="idMatiere" itemLabel="nom" class="form-control"></form:select>
+		<form:select path="matiere.idMat" items="${listeMat}"
+				itemValue="idMat" itemLabel="nom" class="form-control"></form:select>
  
 		
 		</div><br>
