@@ -60,7 +60,7 @@ public class ControllerDepartement {
 	public ModelAndView modifier(@RequestParam int id) {
 		ModelAndView view=new ModelAndView("departement");
 		Departement t=DepartMet.getById(id);
-		List<Departement> Depart=new ArrayList<>();
+		List<Departement> Depart=new ArrayList<Departement>();
 		Depart=DepartMet.afficher();
 		
 		List<Enseignant> Ens = new ArrayList<Enseignant>();
