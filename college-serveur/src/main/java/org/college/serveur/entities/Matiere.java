@@ -17,7 +17,7 @@ public class Matiere {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idMatiere;
+	private int idMat;
 	private String nom;
 	
 	@ManyToOne
@@ -37,13 +37,7 @@ public class Matiere {
 		this.nom = nom;
 	}
 
-	public int getIdMatiere() {
-		return idMatiere;
-	}
 
-	public void setIdMatiere(int idMatiere) {
-		this.idMatiere = idMatiere;
-	}
 
 	public String getNom() {
 		return nom;
@@ -53,10 +47,7 @@ public class Matiere {
 		this.nom = nom;
 	}
 
-	@Override
-	public String toString() {
-		return "Matiere [idMatiere=" + idMatiere + ", nom=" + nom + "]";
-	}
+
 
 	public Salle getSalle() {
 		return salle;
@@ -72,6 +63,14 @@ public class Matiere {
 
 	public void setEnseignants(List<Enseignant> enseignants) {
 		this.enseignants = enseignants;
+	}
+
+	public int getIdMat() {
+		return idMat;
+	}
+
+	public void setIdMat(int idMat) {
+		this.idMat = idMat;
 	}
 
 	

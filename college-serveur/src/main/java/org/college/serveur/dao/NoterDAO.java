@@ -26,7 +26,7 @@ public class NoterDAO implements INoterDAO {
 
 
 	public void ajouter(Noter t) {
-		session.getCurrentSession().merge(t);
+		session.getCurrentSession().persist(t);
 		
 	}
 
@@ -60,10 +60,21 @@ public class NoterDAO implements INoterDAO {
 
 	public double getMoyenneParMatiere(int idMatiere) {
 		
-		Query q=session.getCurrentSession().createQuery(" select avg(note) from Noter n where n.matiere.idMatiere =:id group by n.matiere.idMatiere").setParameter("id", idMatiere);
+		Query q=session.getCurrentSession().createQuery(" select avg(note) from Noter n where n.matiere.idMat =:id group by n.matiere.idMatiere").setParameter("id", idMatiere);
 		return (Double) q.list().get(0);
 	}
 
+	
+	public Noter getNote(int idMat,int idP) {
+		
+		List<Noter> notes=session.getCurrentSession().createQuery("select n from Noter n where n.matiere.idMat=:idm and n.etudiant.idPersonne=:idp")
+				.setParameter("idm", idMat).setParameter("idp", idP).list();
+		if(!notes.isEmpty()) {
+			
+			return notes.get(0);
+		}
+		return null;
+	}
 	
 
 }

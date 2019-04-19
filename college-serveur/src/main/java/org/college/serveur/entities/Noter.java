@@ -18,7 +18,6 @@ public class Noter implements Serializable {
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name="idMatiere")
 	private Matiere matiere;
 	
 	@Id
