@@ -17,8 +17,8 @@
 .border{
 border: 2px grey solid;
 display: inline-block;
-
-
+margin-left:5%;
+margin-top:5%;
 }
 
 
@@ -28,9 +28,11 @@ display: inline-block;
 </head>
 <body>
 
-<form:form modelAttribute="noter" action="/college-web/ajoutNote">
 
-  <div class="border">
+
+ 
+<form:form modelAttribute="noter" action="/college-web/ajoutNote">
+<c:if test="${edit==0}">
   
   <div class="form-group">
       <label>Sélectionner l'étudiant :</label>
@@ -49,13 +51,13 @@ display: inline-block;
 		
 		</div><br>	
 	
-			
+	</c:if>		
 		<div class="form-group">
 		<label for="nom">Note :</label>
 		<form:input path="note" type="text" id="note" class="form-control"/>
 		</div><br>
 		
-	</div>	
+	
 <form:button type="submit" value="validerNote" class="btn btn-primary btn-block">Ajouter Note</form:button><br>
 		
 </form:form>
@@ -90,7 +92,6 @@ display: inline-block;
 </tbody>
 
 </table>
-
 
 
 

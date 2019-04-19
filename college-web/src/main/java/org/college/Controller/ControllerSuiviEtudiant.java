@@ -3,9 +3,12 @@ package org.college.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.college.serveur.dao.INoterDAO;
 import org.college.serveur.entities.Etudiant;
 import org.college.serveur.entities.Matiere;
+import org.college.serveur.entities.Noter;
 import org.college.serveur.service.IEtudiantMetier;
+import org.college.serveur.service.INoterMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +20,10 @@ public class ControllerSuiviEtudiant {
 	
 	@Autowired
 	IEtudiantMetier serviceEtu;
+	
+	@Autowired
+	INoterMetier serviceNote;
+
 	
 	@RequestMapping("/gestionEtudiant")
 	public ModelAndView selectionnerEtu() {
@@ -31,13 +38,20 @@ public class ControllerSuiviEtudiant {
 	@RequestMapping("/calculMoyenne")
 	public ModelAndView calculMoyenneEtu(@ModelAttribute("etudiant")Etudiant e) {
 		ModelAndView view = new ModelAndView("suiviEtudiant");
-		List<Etudiant> listEtudiant = new ArrayList<Etudiant>();
-		listEtudiant = serviceEtu.afficher();
+		List<Etudiant> listEtu = new ArrayList<Etudiant>();
+		listEtu=serviceEtu.afficher();
+		
+		System.out.println(e.getIdPersonne());
 		Double moyenne = serviceEtu.getMoyenneGenerale(e.getIdPersonne());
-		view.addObject("etudiant", e);	
-		view.addObject("matiere", new Matiere());
-		view.addObject("listEtudiant", listEtudiant);
-		view.addObject("moyenne", moyenne);
+		
+//		List<Noter> notes= serviceNote.afficher();
+		
+		view.addObject("etudiant", listEtu);
+		view.addObject("note", moyenne);
+		
+//		view.addObject("etudiant", new Etudiant());
+		
+		
 		return view;
 	}
 	

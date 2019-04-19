@@ -7,16 +7,40 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  
+  <style>
+.border{
+border: 2px grey solid;
+display: inline-block;
+margin-left:5%;
+margin-top:5%;
+}
+
+
+</style>
+  
+  
 </head>
 <body>
 
-<form:select path="etudiant.idPersonne" items="${listEtudiant}"
+
+
+<form:form modelAttribute="etudiant" action="/college-web/calculMoyenne">
+
+<form:select path="idPersonne" items="${listEtudiant}"
 itemValue="idPersonne" itemLabel="nom">
 </form:select>
 
-<form:form modelAttribute="etudiant" action="/college-web/calculMoyenne">
 <form:button type="submit">calculer la Moyenne</form:button>
-<output>${moyenne}</output>
+<output>${note}</output>
+
+
+
 </form:form>
 
 
