@@ -35,7 +35,7 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
 				</prop>
-				<prop key="hibernate.hbm2ddl.auto">create
+				<prop key="hibernate.hbm2ddl.auto">update
 				</prop>
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
@@ -77,25 +77,32 @@
     <bean id="daoSalle"  class="org.college.serveur.dao.SalleDAO" ></bean>
    <bean id="serviceSalle" name="serviceSalle" class="org.college.serveur.service.SalleMetier" ></bean>
 	
-	<security:http auto-config="false" use-expressions="true" >
-
-<!-- 		<security:intercept-url pattern="/admin/*" access="hasAnyRole('ROLE_ADMIN') and hasIpAddress('127.0.0.1')" /> -->
-		<security:intercept-url pattern="/admin/*" access="hasAnyRole('ROLE_ADMIN') " />
-		
-		<security:form-login login-page="/login" default-target-url="/jsp/hello.jsp"/>
-		<security:logout logout-success-url="/login" />
-		
-	</security:http>
+	
 	
 	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 	<constructor-arg value="12"></constructor-arg>
 	</bean>
 	
+	
+		<security:http auto-config="false" use-expressions="true" >
+
+<!-- 		<security:intercept-url pattern="/admin/*" access="hasAnyRole('ROLE_ADMIN') and hasIpAddress('127.0.0.1')" /> -->
+		<security:intercept-url pattern="/admin/*" access="hasAnyRole('ROLE_ADMIN') " />
+		
+		<security:form-login login-page="/login" default-target-url="/jsp/acceuil.jsp"/>
+		<security:logout logout-success-url="/login" />
+		
+	</security:http>
+	
+	
+	
+	
+	
 <security:authentication-manager>
 <security:authentication-provider>
 <security:password-encoder ref="encoder"></security:password-encoder>
 <security:jdbc-user-service data-source-ref="dataSource"
-users-by-username-query="select userName,password, actived  from User where username=?"
+users-by-username-query="select userName,password, activated  from User where username=?"
 authorities-by-username-query="select u.userName, r.roleName from User u, Role r  where u.ID_USER = r.ID_USER and u.userName =? " />
 </security:authentication-provider>
 </security:authentication-manager>
