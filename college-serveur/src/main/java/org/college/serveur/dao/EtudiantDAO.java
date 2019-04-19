@@ -55,8 +55,10 @@ public class EtudiantDAO implements  IEtudiantDAO {
 
 	public double getMoyenneGenerale(int idEtudiant) {
 		Query q = session.getCurrentSession().createQuery("select avg(note) from Noter n where n.etudiant.idPersonne =:id group by n.etudiant.idPersonne").setParameter("id", idEtudiant);
-		
-		return (Double) q.list().get(0);
+//		if(!q.list().isEmpty()) {
+			return (Double) q.list().get(0);
+//		}
+//		return 0;
 		
 	}
 
