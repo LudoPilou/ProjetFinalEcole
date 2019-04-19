@@ -16,28 +16,28 @@
 <div class="container" >
 <div class="row">
 <div class="col-sm-1">
-                <form modelAttribute="personne" action="/admin/gestionCollege"/">
+                <form modelAttribute="college" action="/admin/gestionCollege"/">
                 <button type="submit">Ajouter college</button>
                 </form>
 
   </div>
   <div class="col-sm-1">              
 
-                <form modelAttribute="formation" action="/admin/gestionDepartement">
+                <form modelAttribute="departement" action="/admin/gestionDepartement">
                 <button type="submit">Ajouter departement</button>
                 </form>
                 </div>
                 
          <div class="col-sm-1">              
 
-                <form modelAttribute="formation" action="/admin/gestionPersonne">
+                <form modelAttribute="personne" action="/admin/gestionPersonne">
                 <button type="submit">Ajouter persone</button>
                 </form>
                 </div>
                 
                   <div class="col-sm-1">              
 
-                <form modelAttribute="formation" action="/admin/gestionMatiere">
+                <form modelAttribute="matiere" action="/admin/gestionMatiere">
                 <button type="submit">Ajouter matiere</button>
                 </form>
                 </div>
