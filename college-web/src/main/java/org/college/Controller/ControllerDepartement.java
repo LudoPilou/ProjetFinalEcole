@@ -6,9 +6,11 @@ import java.util.List;
 import org.college.serveur.entities.Colleges;
 import org.college.serveur.entities.Departement;
 import org.college.serveur.entities.Enseignant;
+import org.college.serveur.entities.Matiere;
 import org.college.serveur.service.IDepartementMetier;
 import org.college.serveur.service.IGestionCollegeMetier;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +26,11 @@ public class ControllerDepartement {
 	IDepartementMetier DepartMet;
 	
 	@Autowired
+	@Qualifier("serviceEnseignant")
 	IGestionCollegeMetier<Enseignant> EnsMet;
 	
 	@Autowired
+	@Qualifier("serviceCollege")
 	IGestionCollegeMetier<Colleges> EnsCol;
 	
 	@RequestMapping("/addDepartement")

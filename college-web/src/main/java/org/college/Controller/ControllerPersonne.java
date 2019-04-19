@@ -11,6 +11,7 @@ import org.college.serveur.service.IDepartementMetier;
 import org.college.serveur.service.IEtudiantMetier;
 import org.college.serveur.service.IGestionCollegeMetier;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,12 +26,14 @@ public class ControllerPersonne {
 	IEtudiantMetier serviceEtu;
 	
 	@Autowired
+	@Qualifier("serviceEnseignant")
 	IGestionCollegeMetier<Enseignant> serviceEns;
 	
 	@Autowired
 	IDepartementMetier serviceDep;
 	
 	@Autowired
+	@Qualifier("serviceMatiere")
 	IGestionCollegeMetier<Matiere> serviceMat;
 	
 	@RequestMapping("/gestionPersonne")
